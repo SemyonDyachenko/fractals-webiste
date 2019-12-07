@@ -3,17 +3,172 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Фракталы - Semyon Dyachenko</title>
-	<link rel="stylesheet" href="syle.css">
+	<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 	<div id="wrapper">
+		<div id="header">
+			<input type="text" id="count" placeholder="Количество точек" style="margin-right: 10px;"> <button id="button" onclick="Draw()">Построить</button>
+		</div>
 		<div id="main">
-			
+			  <canvas id="canvas2d" width="800" height="600"></canvas>
 		</div>
 		<div id="footer">
-			
+			&copy Вилка Посейдона 2019
 		</div>
+
+
 	</div>
+
+	<script>
+
+	
+
+	var canvas = document.getElementById("canvas2d");
+	var context = canvas.getContext("2d");
+
+	context.fillStyle = "#000000";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+	//--------------------------------------------------------------------------//
+
+
+	const PI = 3.1415926535;
+
+	let countPoints;
+	
+	let pointSizeX = 3;
+	let pointSizeY = 3;
+
+	let x1 = 300;
+	let y1 = 20;
+	let x2 = 30;
+	let y2 = 500;
+	let x3 = 750;
+
+	let y3 = 500;
+	
+
+
+	let x_new,y_new;
+
+	context.fillStyle ="red";
+	context.fillRect(x1,y1,pointSizeX,pointSizeY);
+
+	context.fillStyle ="green";
+	context.fillRect(x2,y2,pointSizeX,pointSizeY);
+
+	context.fillStyle ="blue";
+	context.fillRect(x3,y3,pointSizeX,pointSizeY);
+
+
+
+
+	function GetRandom(min,max)
+	{
+		return Math.floor(Math.random() * (max-min)+min);
+	}
+
+
+
+
+
+
+	
+
+
+	
+
+	function Draw()
+	{
+		
+
+		countPoints = +document.getElementById("count").value;
+		console.log(countPoints);
+
+		for(let i =0; i< countPoints;i++)
+		{
+
+			let random = GetRandom(1,7); // value from 1 to 6
+			
+			if(random == 1 || random == 2)
+			{
+
+					if (x1 < x_new) {
+					x_new = ((x_new - x1) / 2) + x1;
+					}
+					else {
+					x_new = ((x1 - x_new) / 2) + x_new;
+					}
+
+					if (y1 < y_new)
+					{
+						y_new = ((y_new - y1) / 2) + y1;
+					}
+					else {
+						y_new = ((y1 - y_new) / 2) + y_new;
+					}
+
+					context.fillStyle ="white";
+					context.fillRect(x_new,y_new,pointSizeX,pointSizeY);
+
+			}
+
+
+			if (random == 3 || random == 4) 
+			{
+					if (x2 < x_new)
+					{
+						x_new = ((x_new - x2) / 2) + x2;
+					}
+					else {
+						x_new = ((x2 - x_new) / 2) + x_new;
+					}
+
+					if (y2 < y_new) {
+						y_new = ((y_new - y2) / 2) + y2;
+					}
+					else {
+						y_new = ((y2 - y_new) / 2) + y_new;
+					}
+
+					context.fillStyle ="white";
+					context.fillRect(x_new,y_new,pointSizeX,pointSizeY);
+
+			
+			}
+
+
+			if (random == 5 || random == 6) 
+			{
+
+					if (x3 < x_new) {
+						x_new = ((x_new - x3) / 2) + x3;
+					}
+					else {
+						x_new = ((x3 - x_new) / 2) + x_new;
+					}
+
+					if (y3 < y_new) {
+						y_new = ((y_new - y3) / 2) + y3;
+					}
+					else {
+						y_new = ((y3 - y_new) / 2) + y_new;
+					}
+
+					context.fillStyle ="white";
+					context.fillRect(x_new,y_new,pointSizeX,pointSizeY);
+		}
+
+
+
+		}
+		
+
+	}
+	</script>
 
 
 </body>
